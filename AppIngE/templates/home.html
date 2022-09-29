@@ -1,0 +1,62 @@
+{% extends 'head.html' %} 
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% block titulo %}
+        <title>IngE · Home</title>
+        {% endblock %} 
+    </head>
+    <body>
+        {% block encabezado %}
+        <header>
+            <h1 class="site-heading text-center text-faded d-none d-lg-block">
+                <span class="site-heading-upper text-primary mb-3">Un blog para ingenieros</span>
+                <span class="site-heading-lower">IngE</span>
+            </h1>
+        </header>
+        {% endblock %}
+        {% block principal %}
+        <main class="page-section clearfix">
+            <div class="container">
+                <div class="intro">
+                    <div class="intro-text left-0 text-center bg-faded p-5 rounded" style="background-color: #FA7600">
+                        {% for posteo in posteo_list %}
+                        <div style="display: flex; flex-direction: column; justify-content: left">
+                          <div
+                            style="
+                              display: flex;
+                              flex-direction: column;
+                              border: 3px solid black;
+                              margin: 5px 0px 5px 10px;
+                            "
+                          >
+                            <a href="{% url 'detallePost' posteo.slug %}">
+                              <div style="display: flex; flex-direction: row">
+                                <div style="color:black">
+                                  <h2>{{ posteo.titulo }}</h2>
+                                  <h3 style="font-weight: normal">{{ posteo.subtitulo }}</h3>
+                                  <h4 style="font-weight: normal">
+                                    {{ posteo.autor }} | {{ posteo.creacion }}
+                                  </h4>
+                                </div>
+                                <div>
+                                  <img
+                                    style="height: 125px; margin: 10px 10px 10px 50px"
+                                    src="{{ posteo.img.url }}"
+                                  />
+                                </div>
+                              </div>
+                            </a>
+                          </div>
+                        </div>
+                        {% empty %}
+                        <h2 style="margin: 0px; padding: 10px">Aún no hay posts, se el primero!</h2>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </main>
+        {% endblock %}
+    </body>
+</html>

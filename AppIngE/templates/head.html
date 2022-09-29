@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% load static %}
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        {% block titulo %}
+        <title>IngE · head</title>
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+    </head>
+    <body>
+        {% block encabezado %}
+
+        {% endblock %} 
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav" style="background-color: #FA7600">
+            <div class="container">
+                <a class="navbar-brand text-uppercase fw-bold d-lg-none" href="{% url 'home' %}">IngE Blog</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="{% url 'home' %}">Inicio</a></li>
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="{% url 'about' %}">Sobre mi</a></li>
+                        {% if request.user.is_authenticated %}
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="{% url 'posteos' %}">Postear</a></li>
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="{% url 'perfil' %}"></a>Perfil</li>
+                        <p class="text-muted small mb-4 mb-lg-0"> Bienvenido, {{user.usuario}}!!!.</p>
+                        {% else %}
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="{% url 'ingresar' %}"></a>Iniciar sesión</li>
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="{% url 'registro' %}"></a>Registrate!</li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        {% block principal %} 
+
+        {% endblock %}
+    </body>
+</html>
